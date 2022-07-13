@@ -1,8 +1,6 @@
 import React from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
-import HTML from "./courses/HTML";
-import CSS from "./courses/CSS";
-import JavaScript from "./courses/JavaScript";
+import { Outlet, NavLink } from "react-router-dom";
+
 
 const Courses = () => (
   <div className="main-content courses">
@@ -20,12 +18,12 @@ const Courses = () => (
         </li>
       </ul>
     </div>
-    <Routes>
-      <Route path="/courses/html" element={<HTML />} />
-      <Route path="/courses/css" element={<CSS />} />
-      <Route path="/courses/javascript" element={<JavaScript />} />
-    </Routes>
+<Outlet />
   </div>
+
+  
 );
+
+
 
 export default Courses;
