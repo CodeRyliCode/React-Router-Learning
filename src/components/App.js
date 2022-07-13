@@ -10,12 +10,15 @@ import Courses from "./Courses";
 import HTML from "./courses/HTML";
 import CSS from "./courses/CSS";
 import JavaScript from "./courses/JavaScript";
+import NotFound from "./NotFound";
 
 const App = () => (
   <BrowserRouter>
     <div className="container">
       <Header />
       <Routes>
+      {/* Route path with wildcard * as first path so when url does not match any routes, the NotFound page is rendered */}
+      <Route path="*" element={<NotFound/>} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About title="About" />} />
         <Route path="/teachers" element={<Teachers />} />
