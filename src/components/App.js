@@ -7,30 +7,40 @@ import Home from "./Home";
 import About from "./About";
 import Teachers from "./Teachers";
 import Courses from "./Courses";
-import HTML from "./courses/HTML";
-import CSS from "./courses/CSS";
-import JavaScript from "./courses/JavaScript";
 import NotFound from "./NotFound";
+import CourseContainer from "./courses/CourseContainer";
+import { HTMLCourses, CSSCourses, JSCourses } from "../data/courses";
+import Featured from "./Featured";
 
 const App = () => (
   <BrowserRouter>
     <div className="container">
       <Header />
       <Routes>
-      {/* Route path with wildcard * as first path so when url does not match any routes, the NotFound page is rendered */}
-      <Route path="*" element={<NotFound/>} />
+        {/* Route path with wildcard * as first path so when url does not match any routes, the NotFound page is rendered */}
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About title="About" />} />
         <Route path="/teachers" element={<Teachers />} />
-        <Route path="/courses" element={<Courses />} />
+        <Route path="/teachers/:topic/:name" element={<Featured />} />
+
+        <Route
+          path="/courses"
+          element={<Navigate replace to="/courses/html" />}
+        />
         <Route path="/courses" element={<Courses />}>
           <Route
-            path="/courses"
-            element={<Navigate replace to="/courses/html" />}
+            path="/courses/html"
+            element={<CourseContainer data={HTMLCourses} />}
           />
-          <Route path="/courses/html" element={<HTML />} />
-          <Route path="/courses/css" element={<CSS />} />
-          <Route path="/courses/javascript" element={<JavaScript />} />
+          <Route
+            path="/courses/css"
+            element={<CourseContainer data={CSSCourses} />}
+          />
+          <Route
+            path="/courses/javascript"
+            element={<CourseContainer data={JSCourses} />}
+          />
         </Route>
       </Routes>
     </div>
